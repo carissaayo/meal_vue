@@ -1,11 +1,13 @@
-import { createRouter, createMemoryHistory } from "vue-router";
-import Home from "../views/Home.vue";
-import MealsByName from "../views/MealsByName.vue";
-import MealsByLetter from "../views/MealsByLetter.vue";
-import MealsByIngredient from "../views/MealsByIngredient.vue";
-import MealList from "../views/MealList.vue";
-
+import { createRouter, createWebHistory } from "vue-router";
 import DefaultLayout from "../components/DefaultLayout.vue";
+
+import Home from "../views/Home.vue";
+import MealsByIngredient from "../views/MealsByIngredient.vue";
+import MealsByLetter from "../views/MealsByLetter.vue";
+import MealsByName from "../views/MealsByName.vue";
+import MealDetails from "../views/MealDetails.vue";
+import Ingredients from "../views/Ingredients.vue";
+
 const routes = [
   {
     path: "/",
@@ -22,21 +24,31 @@ const routes = [
         component: MealsByName,
       },
       {
+        path: "/by-letter/:letter?",
+        name: "byLetter",
+        component: MealsByLetter,
+      },
+      {
+        path: "/ingredients",
+        name: "ingredients",
+        component: Ingredients,
+      },
+      {
         path: "/by-ingredient/:ingredient?",
         name: "byIngredient",
         component: MealsByIngredient,
       },
       {
-        path: "/by-letter/:letter?",
-        name: "byLetter",
-        component: MealsByLetter,
+        path: "/meal/:id",
+        name: "mealDetails",
+        component: MealDetails,
       },
     ],
   },
 ];
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
 });
 
